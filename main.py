@@ -78,24 +78,34 @@ while run:
     racket1.reset()
     racket2.reset()
 
-    racket1.update_l()
-    racket2.update_r()
-    ball.rect.x += speed_x
-    ball.rect.y += speed_y
+    if finish == False:
+        racket1.update_l()
+        racket2.update_r()
+        ball.rect.x += speed_x
+        ball.rect.y += speed_y
 
-    if sprite.collide_rect(racket1, ball) or sprite.collide_rect(racket2, ball):
-        speed_x *= -1
+        if sprite.collide_rect(racket1, ball) or sprite.collide_rect(racket2, ball):
+            speed_x *= -1
 
-    if ball.rect.y <= 0 or ball.rect.y >= win_height - ball.rect.height:
-        speed_y *= -1 
+        if ball.rect.y <= 0 or ball.rect.y >= win_height - ball.rect.height:
+            speed_y *= -1 
 
-    if ball.rect.x <= 0:
-        racket1.points -= 1
-    if ball.rect.x >= win_width - ball.rect.width:
-        racket2.points -= 1
+        if ball.rect.x <= 0:
+            racket2.c += 1
+
+            ball.rect.x = 300
+            ball.rect.y = 250
+
+        if ball.rect.x >= win_width - ball.rect.width:
+            racket1.points += 1
+
+            ball.rect.x = 300
+            ball.rect.y = 250
         
-    
 
+
+        if racket1.points >= 5 or racket2.points >= 5:
+            finish = True
 
     display.update()
     clock.tick(FPS)
