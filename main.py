@@ -91,7 +91,7 @@ while run:
             speed_y *= -1 
 
         if ball.rect.x <= 0:
-            racket2.c += 1
+            racket2.points += 1
 
             ball.rect.x = 300
             ball.rect.y = 250
@@ -101,11 +101,10 @@ while run:
 
             ball.rect.x = 300
             ball.rect.y = 250
-        
 
-
-        if racket1.points >= 5 or racket2.points >= 5:
+        if racket1.points >= 7 or racket2.points >= 7:
             finish = True
 
+            
     display.update()
     clock.tick(FPS)
