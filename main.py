@@ -102,9 +102,14 @@ while run:
             ball.rect.x = 300
             ball.rect.y = 250
 
-        if racket1.points >= 7 or racket2.points >= 7:
-            finish = True
+    if racket1.points >= 7:
+        text3 = win_text.render(f"Ви перемогли! {racket1.points}", 1, (0, 0, 0))
+        window.blit(text3, (200, 200))
+        finish = True
+    if racket2.points >= 7:
+        text4 = lose_text.render(f"Ви перемогли! {racket1.points}", 1, (0, 0, 0))
+        window.blit(text4, (200, 200))
+        finish = True
 
-            
     display.update()
     clock.tick(FPS)
